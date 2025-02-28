@@ -1,0 +1,41 @@
+{% extends 'board/base.html' %}
+{% block title %}게시물 목록{% endblock title %}
+
+{% block content %}
+    <h1 class="text-2xl font-bold mb-4">게시물 목록</h1>
+
+    {% if object_list %}
+        <table class="w-full table-auto border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border border-gray-300 px-4 py-2">제목</th>
+                    <th class="border border-gray-300 px-4 py-2">작성자</th>
+                    <th class="border border-gray-300 px-4 py-2">작성일</th>
+                    <th class="border border-gray-300 px-4 py-2">파일</th>
+                    <th class="border border-gray-300 px-4 py-2">조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="border border-gray-300 px-4 py-2">{{ object.title }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ object.writer }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ object.created_at }}</td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            {% if object.file %}
+                                <a href="{{ object.file.url }}" class="text-blue-500 underline">파일 다운로드</a>
+                            {% else %}
+                                없음
+                            {% endif %}
+                        </td>
+                        <td class="border border-gray-300 px-4 py-2">{{ object.read_count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center text-gray-500">게시물이 존재하지 않습니다.</p>
+    {% endif %}
+
+    <a href="" ><button>글쓰기</button></a>
+{% endblock content %}
