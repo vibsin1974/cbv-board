@@ -17,3 +17,11 @@ class Create(CreateView):
     model = Board
     fields = ["title","writer","content","file"]
     success_url = "/board/"
+    
+    def get_form(self):
+        form = super().get_form()
+        form.fields["title"].label = "제목"
+        form.fields["writer"].label = "작성자"
+        form.fields["content"].label = "내용"
+        form.fields["file"].label = "파일"
+        return form
