@@ -18,7 +18,7 @@
             <tbody>
                 {% for object in object_list %}
                     <tr class="hover:bg-gray-100">
-                        <td class="border border-gray-300 px-4 py-2">{{ object.title }}</td>
+                        <td class="border border-gray-300 px-4 py-2"><a href={%url "board:detail" object.id %}>{{ object.title }}</a></td>
                         <td class="border border-gray-300 px-4 py-2">{{ object.writer }}</td>
                         <td class="border border-gray-300 px-4 py-2">{{ object.created_at }}</td>
                         <td class="border border-gray-300 px-4 py-2">
@@ -37,5 +37,5 @@
         <p class="text-center text-gray-500">게시물이 존재하지 않습니다.</p>
     {% endif %}
 
-    <a href="" ><button>글쓰기</button></a>
+    <a href={%url "board:create" %} ><button>글쓰기</button></a>
 {% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'board/base.html' %}
+
+{% block title %}상세보기{% endblock title %}
+
+{% block content %}
+    <div class="max-w-2xl mx-auto p-6 bg-white border rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold mb-4">{{ object.title }}</h1>
+        <p class="text-gray-600 mb-2">작성자: {{ object.writer }}</p>
+        <p class="text-gray-500 mb-4">작성일: {{ object.created_at }}</p>
+        
+        <div class="bg-gray-100 p-4 rounded-lg mb-4">
+            <p>{{ object.content }}</p>
+        </div>
+        
+        {% if object.file %}
+            <p class="text-blue-500 underline mb-4">
+                <a href="{{ object.file.url }}">파일 다운로드</a>
+            </p>
+        {% else %}
+            <p class="text-gray-400 mb-4">첨부된 파일이 없습니다.</p>
+        {% endif %}
+
+        <div class="flex space-x-4">
+            {% comment %} <a href="{% url 'board:update' object.id %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">수정</a>
+            <a href="{% url 'board:delete' object.id %}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">삭제</a> {% endcomment %}
+            <a href="{% url 'board:list' %}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">목록</a>
+        </div>
+    </div>
+{% endblock content %}

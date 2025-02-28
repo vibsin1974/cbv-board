@@ -1,0 +1,30 @@
+{% extends "board/base.html" %}
+{% block title %}글쓰기{% endblock title %}
+
+{% block content %}
+    <div class="max-w-2xl mx-auto p-6 bg-white border rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold mb-6">글쓰기</h1>
+        <form method="post" enctype="multipart/form-data" class="w-full">
+            {% csrf_token %}
+            <table class="w-full table-auto border-collapse border border-gray-300 mb-4">
+                <tbody>
+                    {% for field in form %}
+                        <tr class="border-b">
+                            <th class="text-left p-2 border-r bg-gray-100">{{ field.label }}</th>
+                            <td class="p-2">{{ field }}</td>
+                        </tr>
+                        {% if field.errors %}
+                            <tr>
+                                <td colspan="2" class="text-red-500 text-sm p-2">{{ field.errors }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="text-right">
+                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">글쓰기</button>
+                <a href="{% url 'board:list' %}" class="ml-2 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">취소</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
