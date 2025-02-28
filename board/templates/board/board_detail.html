@@ -4,25 +4,40 @@
 
 {% block content %}
     <div class="max-w-2xl mx-auto p-6 bg-white border rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold mb-4">{{ object.title }}</h1>
-        <p class="text-gray-600 mb-2">작성자: {{ object.writer }}</p>
-        <p class="text-gray-500 mb-4">작성일: {{ object.created_at }}</p>
-        
-        <div class="bg-gray-100 p-4 rounded-lg mb-4">
-            <p>{{ object.content }}</p>
-        </div>
-        
-        {% if object.file %}
-            <p class="text-blue-500 underline mb-4">
-                <a href="{{ object.file.url }}">파일 다운로드</a>
-            </p>
-        {% else %}
-            <p class="text-gray-400 mb-4">첨부된 파일이 없습니다.</p>
-        {% endif %}
-
+        <h1 class="text-3xl font-bold mb-6">상세보기</h1>
+        <table class="w-full table-auto border-collapse border border-gray-300 mb-4">
+            <tbody>
+                <tr class="border-b">
+                    <th class="text-left p-2 border-r bg-gray-100">제목</th>
+                    <td class="p-2">{{ object.title }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="text-left p-2 border-r bg-gray-100">작성자</th>
+                    <td class="p-2">{{ object.writer }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="text-left p-2 border-r bg-gray-100">작성일</th>
+                    <td class="p-2">{{ object.created_at }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="text-left p-2 border-r bg-gray-100">내용</th>
+                    <td class="p-2">{{ object.content }}</td>
+                </tr>
+                <tr>
+                    <th class="text-left p-2 border-r bg-gray-100">파일</th>
+                    <td class="p-2">
+                        {% if object.file %}
+                            <a href="{{ object.file.url }}" class="text-blue-500 underline">파일 다운로드</a>
+                        {% else %}
+                            <span class="text-gray-400">첨부된 파일이 없습니다.</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div class="flex space-x-4">
-            {% comment %} <a href="{% url 'board:update' object.id %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">수정</a>
-            <a href="{% url 'board:delete' object.id %}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">삭제</a> {% endcomment %}
+            <a href="{% url 'board:edit' object.id %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">수정</a>
+            <a href="{% url 'board:delete' object.id %}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">삭제</a>
             <a href="{% url 'board:list' %}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">목록</a>
         </div>
     </div>

@@ -1,9 +1,9 @@
 {% extends "board/base.html" %}
-{% block title %}글쓰기{% endblock title %}
+{% block title %}글{{button_lbl}}{% endblock title %}
 
 {% block content %}
     <div class="max-w-2xl mx-auto p-6 bg-white border rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold mb-6">글쓰기</h1>
+        <h1 class="text-3xl font-bold mb-6">글{{button_lbl}}</h1>
         <form method="post" enctype="multipart/form-data" class="w-full">
             {% csrf_token %}
             <table class="w-full table-auto border-collapse border border-gray-300 mb-4">
@@ -22,7 +22,7 @@
                 </tbody>
             </table>
             <div class="text-right">
-                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">글쓰기</button>
+                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">글{{button_lbl}}</button>
                 <a href="{% url 'board:list' %}" class="ml-2 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">취소</a>
             </div>
         </form>
